@@ -1,0 +1,33 @@
+package org.example.controller;
+
+import lombok.extern.slf4j.Slf4j;
+import org.example.pojo.Clazz;
+import org.example.pojo.ClazzQueryParam;
+import org.example.pojo.PageResult;
+import org.example.pojo.Result;
+import org.example.service.ClazzService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+@Slf4j
+@RequestMapping("/clazzs")
+@RestController
+public class ClazzController {
+    @Autowired
+    private ClazzService clazzService;
+
+    @GetMapping
+    public Result page(ClazzQueryParam clazzQueryParam){//查询全部班级数据，分页查询
+        log.info("查询全部班级数据，分页查询参数{}", clazzQueryParam);
+        PageResult<Clazz> pageResult=clazzService.page(clazzQueryParam);
+        return Result.success(pageResult);
+    }
+
+
+
+}
