@@ -22,4 +22,7 @@
         </where>
         order by c.update_time desc
     </select>
+<!--    <select id="findById" resultType="org.example.pojo.Clazz">-->
+<!--        select * from clazz where id = #{id}-->
+<!--    </select>-->
 </mapper>

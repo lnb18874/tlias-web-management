@@ -7,10 +7,7 @@ import org.example.pojo.PageResult;
 import org.example.pojo.Result;
 import org.example.service.ClazzService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,6 +25,12 @@ public class ClazzController {
         return Result.success(pageResult);
     }
 
+    @GetMapping("/{id}")
+    public Result findById(@PathVariable Integer id){
+        log.info("根据id查询班级数据：{}",id);
+        Clazz clazz=clazzService.findById(id);
+        return Result.success(clazz);
+    }
 
 
 }

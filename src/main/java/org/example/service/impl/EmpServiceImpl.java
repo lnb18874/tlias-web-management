@@ -99,4 +99,10 @@ public class EmpServiceImpl implements EmpService {
 
 
     }
+
+    @Override
+    public List<Emp> list() {
+        List<Emp>empList=empMapper.allList();
+        return empList;
+    }
 }

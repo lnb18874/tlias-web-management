@@ -29,4 +29,9 @@ public class ClazzServiceImpl implements ClazzService {
         Page<Clazz>clazzPage=(Page<Clazz>)clazzes;
         return new PageResult<>(clazzPage.getTotal(),clazzPage.getResult());
     }
+
+    @Override
+    public Clazz findById(Integer id) {
+        return clazzMapper.findById(id);
+    }
 }
