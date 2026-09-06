@@ -39,4 +39,11 @@ public class ClazzController {
         return Result.success();
     }
 
+    @DeleteMapping("/{id}")
+    public Result delete(@PathVariable Integer id){
+        log.info("删除班级数据：{}",id);
+        clazzService.delete(id);
+        return Result.success();
+    }
+
 }
