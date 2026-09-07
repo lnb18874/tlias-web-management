@@ -26,4 +26,7 @@ public interface ClazzMapper {
 
     @Select("select count(*) from student where clazz_id=#{clazzId}")
     Integer countStudentByClazzId(Integer clazzId);
+
+    @Select("select * from clazz")
+    List<Clazz> findAll();
 }

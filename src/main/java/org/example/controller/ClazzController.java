@@ -46,4 +46,11 @@ public class ClazzController {
         return Result.success();
     }
 
+    @GetMapping("/list")
+    public Result list(){
+        log.info("查询全部班级数据");
+        List<Clazz> clazzList=clazzService.list();
+        return Result.success(clazzList);
+    }
+
 }
