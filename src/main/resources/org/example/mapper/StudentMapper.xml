@@ -3,6 +3,24 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.example.mapper.StudentMapper">
+    <insert id="insert">
+        insert into student
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            name, no, gender, phone, degree, clazz_id, create_time, update_time,
+            <if test="idCard != null">id_card,</if>
+            <if test="isCollege != null">is_college,</if>
+            <if test="address != null">address,</if>
+            <if test="graduationDate != null">graduation_date,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{name}, #{no}, #{gender}, #{phone}, #{degree}, #{clazzId}, #{createTime}, #{updateTime},
+            <if test="idCard != null">#{idCard},</if>
+            <if test="isCollege != null">#{isCollege},</if>
+            <if test="address != null">#{address},</if>
+            <if test="graduationDate != null">#{graduationDate},</if>
+        </trim>
+    </insert>
+    
     <select id="list" resultType="org.example.pojo.Student">
         select s.*, c.name clazzName
         from student s

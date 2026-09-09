@@ -6,4 +6,6 @@ import org.example.pojo.StudentQueryParam;
 
 public interface StudentService {
     PageResult<Student> page(StudentQueryParam studentQueryParam);
+
+    void add(Student student);
 }

@@ -8,6 +8,8 @@ import org.example.pojo.StudentQueryParam;
 import org.example.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,5 +26,12 @@ public class StudentController {
         log.info("查询全部学生数据");
         PageResult<Student> pageResult = studentService.page(studentQueryParam);
         return Result.success(pageResult);
+    }
+
+    @PostMapping
+    public Result add(@RequestBody Student student){
+        log.info("添加学生数据：{}", student);
+        studentService.add(student);
+        return Result.success();
     }
 }
