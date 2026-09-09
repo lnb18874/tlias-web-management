@@ -7,11 +7,7 @@ import org.example.pojo.Student;
 import org.example.pojo.StudentQueryParam;
 import org.example.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
@@ -32,6 +28,20 @@ public class StudentController {
     public Result add(@RequestBody Student student){
         log.info("添加学生数据：{}", student);
         studentService.add(student);
+        return Result.success();
+    }
+
+    @GetMapping("/{id}")
+    public Result get(@PathVariable Integer id){
+        log.info("查询学生数据：{}", id);
+        Student student = studentService.getById(id);
+        return Result.success(student);
+    }
+
+    @PutMapping
+    public Result update(@RequestBody Student student){
+        log.info("修改学生数据：{}", student);
+        studentService.update(student);
         return Result.success();
     }
 }

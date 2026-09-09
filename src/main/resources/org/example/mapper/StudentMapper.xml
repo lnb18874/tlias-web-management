@@ -20,7 +20,27 @@
             <if test="graduationDate != null">#{graduationDate},</if>
         </trim>
     </insert>
-    
+
+    <update id="update">
+        update student
+        <set>
+            name = #{name},
+            no = #{no},
+            phone = #{phone},
+            gender = #{gender},
+            degree = #{degree},
+            <if test="idCard != null">id_card = #{idCard},</if>
+            <if test="isCollege != null">is_college = #{isCollege},</if>
+            <if test="address != null">address = #{address},</if>
+            <if test="graduationDate != null">graduation_date = #{graduationDate},</if>
+            violation_count = #{violationCount},
+            violation_score = #{violationScore},
+            clazz_id = #{clazzId},
+            update_time = #{updateTime}
+        </set>
+        where id = #{id}
+    </update>
+
     <select id="list" resultType="org.example.pojo.Student">
         select s.*, c.name clazzName
         from student s
