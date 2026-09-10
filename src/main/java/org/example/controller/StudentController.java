@@ -44,4 +44,11 @@ public class StudentController {
         studentService.update(student);
         return Result.success();
     }
+
+    @DeleteMapping("/{ids}")
+    public Result delete(@PathVariable Integer[] ids){
+        log.info("删除学生数据：{}", ids);
+        studentService.delete(ids);
+        return Result.success();
+    }
 }

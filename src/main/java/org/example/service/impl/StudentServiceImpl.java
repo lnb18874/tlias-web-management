@@ -2,6 +2,7 @@ package org.example.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import org.example.exception.BusinessException;
 import org.example.mapper.StudentMapper;
 import org.example.pojo.PageResult;
 import org.example.pojo.Student;
@@ -46,5 +47,14 @@ public class StudentServiceImpl implements StudentService {
     public void update(Student student) {
         student.setUpdateTime(LocalDateTime.now());
         studentMapper.update(student);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void delete(Integer[] ids) {
+        if(ids==null||ids.length==0){
+            throw new BusinessException("删除失败，参数为空");
+        }
+        studentMapper.deleteByIds(ids);
     }
 }
