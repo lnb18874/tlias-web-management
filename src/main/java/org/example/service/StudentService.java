@@ -14,4 +14,6 @@ public interface StudentService {
     void update(Student student);
 
     void delete(Integer[] ids);
+
+    void updateScore(Integer id, Integer score);
 }

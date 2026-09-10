@@ -41,6 +41,15 @@
         where id = #{id}
     </update>
 
+<!--    <update id="updateScore">-->
+<!--        update student-->
+<!--        set violation_score = violation_score + #{score},-->
+<!--            violation_count = violation_count + 1,-->
+<!--            update_time = now()-->
+<!--        where id = #{id}-->
+<!--          and violation_score + #{score} &lt;= 255-->
+<!--    </update>-->
+
     <delete id="deleteByIds">
         delete from student where id in
         <foreach collection="ids" item="id" open="(" close=")" separator=",">

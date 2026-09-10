@@ -24,4 +24,6 @@ public interface StudentMapper {
 //    void deleteById(Integer id);
 
     void deleteByIds(Integer[] ids);
+
+//    void updateScore(Student student);
 }

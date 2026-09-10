@@ -57,4 +57,20 @@ public class StudentServiceImpl implements StudentService {
         }
         studentMapper.deleteByIds(ids);
     }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void updateScore(Integer id, Integer score) {
+        if(score == null ||score<0){
+            throw new BusinessException("违章积分不能为负数或为空");
+        }
+        Student student = studentMapper.getById(id);
+        Short newScore=(short)(student.getViolationScore()+score);
+        student.setViolationScore(newScore);
+        Short newCount=(short)(student.getViolationCount()+1);
+        student.setViolationCount(newCount);
+        student.setUpdateTime(LocalDateTime.now());
+        studentMapper.update(student);
+//        studentMapper.updateScore(student);
+    }
 }
