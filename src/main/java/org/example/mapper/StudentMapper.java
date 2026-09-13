@@ -8,6 +8,7 @@ import org.example.pojo.Student;
 import org.example.pojo.StudentQueryParam;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface StudentMapper {
@@ -24,6 +25,10 @@ public interface StudentMapper {
 //    void deleteById(Integer id);
 
     void deleteByIds(Integer[] ids);
+
+    List<Map<String, Object>> countStudentData();
+
+    List<Map> countStudentDegreeData();
 
 //    void updateScore(Student student);
 }

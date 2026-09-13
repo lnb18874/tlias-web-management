@@ -41,4 +41,7 @@ public interface EmpMapper {
 
     @Select("select * from emp")
     List<Emp> allList();
+
+
+    List<Map> countClazzStudentData();
 }
