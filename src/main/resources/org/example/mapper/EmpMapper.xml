@@ -127,5 +127,9 @@
         group by gender
     </select>
 
+    <select id="countEmpByDeptId" resultType="java.lang.Integer">
+        select count(*) from emp where dept_id=#{deptId}
+    </select>
+
 
 </mapper>

@@ -43,5 +43,7 @@ public interface EmpMapper {
     List<Emp> allList();
 
 
-    List<Map> countClazzStudentData();
+//    List<Map> countClazzStudentData();
+
+    int countEmpByDeptId(Integer id);
 }
