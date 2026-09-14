@@ -46,4 +46,7 @@ public interface EmpMapper {
 //    List<Map> countClazzStudentData();
 
     int countEmpByDeptId(Integer id);
+
+    @Select("select * from emp where username = #{username} and password = #{password}")
+    Emp getByUserNameAndPassword(Emp emp);
 }
