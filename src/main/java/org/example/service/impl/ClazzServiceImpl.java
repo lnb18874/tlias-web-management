@@ -59,4 +59,11 @@ public class ClazzServiceImpl implements ClazzService {
     public List<Clazz> list() {
         return clazzMapper.findAll();
     }
+
+    @Override
+    public void add(Clazz clazz) {
+        clazz.setCreateTime(LocalDateTime.now());
+        clazz.setUpdateTime(LocalDateTime.now());
+        clazzMapper.insert(clazz);
+    }
 }

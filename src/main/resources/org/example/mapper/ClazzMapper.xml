@@ -3,6 +3,19 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.example.mapper.ClazzMapper">
+
+    <insert id="insert">
+        insert into clazz
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            name,room,begin_date,end_date,create_time,subject,update_time,
+            <if test="masterId != null">master_id,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{name},#{room},#{beginDate},#{endDate},#{createTime},#{subject},#{updateTime},
+            <if test="masterId != null">#{masterId},</if>
+        </trim>
+    </insert>
+
     <select id="list" resultType="org.example.pojo.Clazz">
         select c.* ,e.name masterName,
                (case

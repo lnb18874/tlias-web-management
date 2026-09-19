@@ -16,4 +16,6 @@ public interface ClazzService {
     void delete(Integer id);
 
     List<Clazz> list();
+
+    void add(Clazz clazz);
 }

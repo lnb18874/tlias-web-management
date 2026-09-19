@@ -1,6 +1,7 @@
 package org.example.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.example.anno.LogOperation;
 import org.example.pojo.Clazz;
 import org.example.pojo.ClazzQueryParam;
 import org.example.pojo.PageResult;
@@ -25,6 +26,14 @@ public class ClazzController {
         return Result.success(pageResult);
     }
 
+    @LogOperation
+    @PostMapping
+    public Result add(@RequestBody Clazz clazz){
+        log.info("添加班级数据：{}",clazz);
+        clazzService.add(clazz);
+        return Result.success();
+    }
+
     @GetMapping("/{id}")
     public Result findById(@PathVariable Integer id){
         log.info("根据id查询班级数据：{}",id);
@@ -32,6 +41,7 @@ public class ClazzController {
         return Result.success(clazz);
     }
 
+    @LogOperation
     @PutMapping
     public Result update(@RequestBody Clazz clazz){
         log.info("修改班级数据：{}",clazz);

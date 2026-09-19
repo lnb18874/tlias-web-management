@@ -1,10 +1,12 @@
 package org.example.Filter;
 
+import io.jsonwebtoken.Claims;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.example.utils.CurrentHolder;
 import org.example.utils.JwtUtils;
 
 import java.io.IOException;
@@ -40,6 +42,10 @@ public class TokenFilter implements Filter {
 
         //5.解析令牌
         try{
+            Claims claims =JwtUtils.parseJWT(jwt);
+            Integer empId=Integer.valueOf(claims.get("id").toString());
+            CurrentHolder.setCurrentId(empId);
+            log.info("令牌解析成功");
             JwtUtils.parseJWT(jwt);
         }catch (Exception e){
             log.info("令牌解析失败，进行拦截");
@@ -49,5 +55,8 @@ public class TokenFilter implements Filter {
 
         //6. 放行
         filterChain.doFilter(servletRequest, servletResponse);
+
+        //7. 移除当前线程的令牌信息
+        CurrentHolder.remove();
     }
 }
